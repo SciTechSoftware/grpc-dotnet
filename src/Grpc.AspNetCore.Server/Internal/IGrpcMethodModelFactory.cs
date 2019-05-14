@@ -26,7 +26,7 @@ namespace Grpc.AspNetCore.Server.Internal
     /// An interface for creating models that describe and invoke service methods on .NET types.
     /// </summary>
     /// <typeparam name="TService">The service type.</typeparam>
-    internal interface IGrpcMethodModelFactory<TService>
+    public interface IGrpcMethodModelFactory<TService>
     {
         GrpcEndpointModel<UnaryServerMethod<TService, TRequest, TResponse>> CreateUnaryModel<TRequest, TResponse>(Method<TRequest, TResponse> method);
         GrpcEndpointModel<ClientStreamingServerMethod<TService, TRequest, TResponse>> CreateClientStreamingModel<TRequest, TResponse>(Method<TRequest, TResponse> method);
@@ -34,7 +34,7 @@ namespace Grpc.AspNetCore.Server.Internal
         GrpcEndpointModel<DuplexStreamingServerMethod<TService, TRequest, TResponse>> CreateDuplexStreamingModel<TRequest, TResponse>(Method<TRequest, TResponse> method);
     }
 
-    internal class GrpcEndpointModel<TInvoker> where TInvoker : Delegate
+    public class GrpcEndpointModel<TInvoker> where TInvoker : Delegate
     {
         public GrpcEndpointModel(TInvoker invoker, List<object> metadata)
         {
